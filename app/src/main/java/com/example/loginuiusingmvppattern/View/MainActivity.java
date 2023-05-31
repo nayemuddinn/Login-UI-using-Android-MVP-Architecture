@@ -7,10 +7,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
+import com.example.loginuiusingmvppattern.Presenter.IPresenter;
+import com.example.loginuiusingmvppattern.Presenter.Presenter;
 import com.example.loginuiusingmvppattern.R;
 
-public class MainActivity extends AppCompatActivity {
-     EditText userName,passWord;
+public class MainActivity extends AppCompatActivity implements IView{
+     EditText userEmail,passWord;
      Button button;
      ProgressBar progressBar;
     @Override
@@ -19,12 +21,27 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
          progressBar=findViewById(R.id.Progress_bar);
-         userName=findViewById(R.id.username);
+         userEmail=findViewById(R.id.usermail);
          passWord=findViewById(R.id.password);
          button=findViewById(R.id.button);
 
+        IPresenter presenter=new Presenter(this);
+        presenter.Login(userEmail.toString(),passWord.toString());
 
 
+
+
+
+
+    }
+
+    @Override
+    public void LoginSuccess() {
+
+    }
+
+    @Override
+    public void LoginFailed() {
 
     }
 }
