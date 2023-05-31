@@ -4,4 +4,5 @@ public interface IView {
        void LoginSuccess(String msg);
        void LoginFailed(String msg);
 
+
 }

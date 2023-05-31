@@ -14,9 +14,10 @@ import com.example.loginuiusingmvppattern.Presenter.Presenter;
 import com.example.loginuiusingmvppattern.R;
 
 public class MainActivity extends AppCompatActivity implements IView {
-    EditText userEmail, passWord;
-    Button button;
-    ProgressBar progressBar;
+   private EditText userEmail, passWord;
+   private Button button;
+   private ProgressBar progressBar;
+    private IPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,11 +29,21 @@ public class MainActivity extends AppCompatActivity implements IView {
         passWord = findViewById(R.id.password);
         button = findViewById(R.id.button);
 
+
+        presenter = new Presenter(this);
+        progressBar.setVisibility(View.INVISIBLE);
+
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                IPresenter presenter = new Presenter(MainActivity.this);
-                presenter.Login(userEmail.toString(), passWord.toString());
+
+                progressBar.setVisibility(View.VISIBLE);
+                presenter.Login(userEmail.getText().toString().trim(), passWord.getText().toString().trim());
+
+                userEmail.setText("");
+                passWord.setText("");
+
             }
         });
 
@@ -42,11 +53,15 @@ public class MainActivity extends AppCompatActivity implements IView {
 
     @Override
     public void LoginSuccess(String msg) {
+        progressBar.setVisibility(View.INVISIBLE);
         Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void LoginFailed(String msg) {
+        progressBar.setVisibility(View.INVISIBLE);
         Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
     }
+
+
 }
