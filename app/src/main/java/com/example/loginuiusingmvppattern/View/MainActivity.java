@@ -1,4 +1,4 @@
-package com.example.loginuiusingmvppattern;
+package com.example.loginuiusingmvppattern.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+
+import com.example.loginuiusingmvppattern.R;
 
 public class MainActivity extends AppCompatActivity {
      EditText userName,passWord;
